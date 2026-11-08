@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BotCloud - Pagou, Entrou</title>
+<style>
+body{margin:0;font-family:Arial;background:#0f0f1a;color:white;text-align:center}
+header{padding:20px;font-weight:bold;font-size:22px}
+.hero{padding:30px 20px}
+.hero h1{font-size:32px;line-height:1.2}
+.hero h1 span{color:#00ff88}
+.btn{background:#00ff88;color:black;padding:15px 25px;border-radius:10px;display:block;margin:15px;font-weight:bold;text-decoration:none}
+.card{background:#1a1a2e;margin:15px;padding:20px;border-radius:15px;text-align:left}
+input{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:none;box-sizing:border-box}
+</style>
+</head>
+<body>
+<header>🤖 BOTCLOUD</header>
+<div class="hero">
+<h1>Your Bots.<br><span>Your Control.</span></h1>
+<p>Pagou, Entrou. Aloja teu bot de WhatsApp aqui e fica ligado 24h.</p>
+<a class="btn" href="#planos">VER PLANOS</a>
+<a class="btn" href="#convite" style="background:#ffcc00">CONVIDE E GANHE 50MT</a>
+</div>
+<div id="planos" class="card">
+<h2>📦 Planos</h2>
+<p><b>Starter - 150MT/mês</b><br>1 Bot • Logs em tempo real</p>
+<p><b>Professional - 400MT/mês</b><br>3 Bots • Auto Restart</p>
+<p><b>Business - 900MT/mês</b><br>10 Bots • Suporte Prioritário</p>
+<a class="btn" href="https://wa.me/258840000000?text=Quero%20BotCloud">PAGAR COM M-PESA</a>
+</div>
+<div id="convite" class="card">
+<h2>💰 Convide e Ganhe 50MT</h2>
+<p>Convidou alguém que pagou? Recebes 50MT na hora no teu M-Pesa.</p>
+<form onsubmit="enviarConvite(event)">
+<label>Quem te convidou? (Nome)</label>
+<input id="convidou" placeholder="Ex: Edson" required>
+<label>Teu nome</label>
+<input id="nome" placeholder="Teu nome" required>
+<label>Teu número M-Pesa / e-Mola</label>
+<input id="numero" placeholder="84..." required>
+<label>Plano que pagaste</label>
+<input id="plano" placeholder="Starter / Professional / Business" required>
+<button class="btn" type="submit" style="border:none;width:100%">ENVIAR E GANHAR 50MT</button>
+</form>
+<p id="msg"></p>
+</div>
+<script>
+function enviarConvite(e){
+e.preventDefault();
+let dados={convidou:document.getElementById('convidou').value,nome:document.getElementById('nome').value,numero:document.getElementById('numero').value,plano:document.getElementById('plano').value,data:new Date().toLocaleString()};
+let lista=JSON.parse(localStorage.getItem('convites')||'[]');
+lista.push(dados);
+localStorage.setItem('convites',JSON.stringify(lista));
+document.getElementById('msg').innerHTML="✅ Recebido! O admin vai verificar e mandar teus 50MT logo.";
+alert("Notificação enviada para o Admin!");
+}
+</script>
+</body>
+</html>
